@@ -1,5 +1,5 @@
 Uebung7::Application.routes.draw do
-  resources :tasks
+  resources :tasks, except: [:show]
   root 'tasks#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
