@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class TasksControllerTest < ActionController::TestCase
+  
+  include Devise::TestHelpers
+  
   setup do
     @task = tasks(:one)
   end
@@ -21,7 +24,6 @@ class TasksControllerTest < ActionController::TestCase
       assert_difference('Task.count') do
         post :create, task: { deadline: @task.deadline, done: @task.done, duration: @task.duration, name: @task.name }
       end
-    
     assert_redirected_to tasks_url
   end
 
