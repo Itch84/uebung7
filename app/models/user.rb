@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   
   has_many :tasks
+  has_many :delegated_tasks, class_name: "Task", foreign_key: "delegated_id"
   
   validates :username, presence:  true, uniqueness: true
   
