@@ -8,7 +8,8 @@ class TasksControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:tasks)
+    assert_not_nil assigns(:done)
+    assert_not_nil assigns(:todo)
   end
 
   test "should get new" do
@@ -17,17 +18,13 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should create task" do
-    assert_difference('Task.count') do
-      post :create, task: { deadline: @task.deadline, done: @task.done, duration: @task.duration, name: @task.name }
-    end
-
-    assert_redirected_to task_path(assigns(:task))
+      assert_difference('Task.count') do
+        post :create, task: { deadline: @task.deadline, done: @task.done, duration: @task.duration, name: @task.name }
+      end
+    
+    assert_redirected_to tasks_url
   end
 
-  test "should show task" do
-    get :show, id: @task
-    assert_response :success
-  end
 
   test "should get edit" do
     get :edit, id: @task
@@ -36,7 +33,7 @@ class TasksControllerTest < ActionController::TestCase
 
   test "should update task" do
     patch :update, id: @task, task: { deadline: @task.deadline, done: @task.done, duration: @task.duration, name: @task.name }
-    assert_redirected_to task_path(assigns(:task))
+    assert_redirected_to tasks_url
   end
 
   test "should destroy task" do
